@@ -10,7 +10,7 @@ read_files_path = path
 
 page_title = "Anime WebPage"
 
-# '		<video class=\"video\" src=\"{0}\" controls></video>\n' \
+# '		<video class=\"video\" src=\"{0}\" controls></video>\n' \ test
 # '		<a href=\"{0}\"><img src =\"{0}.thumb\">{0}</a><br>\n' \
 def create_html_tag(index_path, raw_file_name):
     try:
