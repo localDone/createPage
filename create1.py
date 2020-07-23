@@ -45,6 +45,7 @@ def create_html_tag(index_path, raw_file_name):
         if "." not in raw_file_name:
             file_name = raw_file_name.split("/")[len(raw_file_name.split("/")) - 1]
             tag_string = '      <a href=\"{0}/\">{0}</a>\n'.format(file_name)
+            print("Created folder {0}".format(raw_file_name))
 
             if '/v' not in raw_file_name or '/v/' in raw_file_name:
                 f.write(tag_string)
@@ -57,7 +58,7 @@ def create_html_tag(index_path, raw_file_name):
         print("Error while creating tags", e)
 
     finally:
-        print("end")
+        # print("end")
         f.close()
 
 
@@ -88,10 +89,17 @@ def create_page(file_path):
 
         f.close()
 
+        arr = []
+
         # Create Folder links
         for raw_file_name in glob.glob(os.path.join(file_path, '*')):
             if '.' not in raw_file_name and 'page-content' not in raw_file_name:
-                create_html_tag(index_path, raw_file_name)
+                arr.append(raw_file_name)
+
+        arr.sort()
+
+        for folder_name in arr:
+            create_html_tag(index_path, folder_name)
 
         f = open(index_path, 'a')
         tag_string = '  </div>\n' \
@@ -134,7 +142,7 @@ def create_page(file_path):
 
     finally:
         f.close()
-        print("End of Create_Page")
+        # print("End of Create_Page")
 
 
 def add_file(index_path, file_path, extention):
