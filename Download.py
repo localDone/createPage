@@ -1,7 +1,4 @@
 import tkinter as tk
-from tkinter import filedialog, Text
-import os
-
 try:
     from pytube import YouTube
 except Exception as e:
@@ -21,7 +18,9 @@ def myClick():
         try:
             ytd = YouTube(url)
             print(ytd.streams.filter(adaptive=True).all)
-            # ytd = YouTube(url).streams.first().download()
+            print("Downloading video at res of 720p.")
+            ytd = YouTube(url).streams.filter(resolution='720p').first().download('.\\test')
+            print(ytd)
         except Exception as e:
             print(e)
     else:
