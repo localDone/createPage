@@ -1,54 +1,13 @@
-import tkinter as tk
-from tkinter import filedialog, Text
+import csv
+from io import StringIO
+
+import dotenv
 import os
-
-try:
-    from pytube import YouTube
-except Exception as e:
-    print(e)
-
-root = tk.Tk()
-apps = []
-
-def myClick():
-    url = myEntry.get()
-
-    if len(url) > 0:
-        myLabel = tk.Label(root, text=url)
-        myLabel.place(x=120, y=40)
-        myLabel.place
-        print(url)
-        try:
-            ytd = YouTube(url)
-            print(ytd.streams.filter(adaptive=True).all)
-            # ytd = YouTube(url).streams.first().download()
-        except Exception as e:
-            print(e)
-    else:
-        myLabel = tk.Label(root, text="URL is empty, try again please.")
-        myLabel.place(x=120, y=40)
-        myLabel.place
+#
+# dir(dotenv.load_dotenv())
+#
+# print(os.getenv('LOGGING_LEVEL'))
 
 
-# Adds title to program
-root.title('{-<DownLoad>-}')
-
-# Creates canvas
-canvas = tk.Canvas(root, height=250, width=700, bg="#263D42")
-canvas.pack()
-
-myEntry = tk.Entry(root, width=50)
-myEntry.pack()
-
-# Adds Button
-myButton = tk.Button(root, text="Download Now", command=myClick)
-myButton.pack()
-# Adds Blank canvas
-# frame = tk.Frame(root, bg="white")
-# frame.place(relwidth=0.8, relheight=0.8, relx=0.1, rely=0.1)
-
-# Adds label
-label1 = tk.Label(root, text="Add Video URL:")
-label1.place(x=120, y=20)
-
-root.mainloop()
+s = StringIO.StringIO('1, "text1,text2", "text3, text4", a, b, c')
+print(list(csv.reader(s, skipinitialspace=True)))
